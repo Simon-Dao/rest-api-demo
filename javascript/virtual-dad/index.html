@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Virtual Father</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <!-- Rounded switch -->
+        <div class="toggle-container">
+            <h1>Spanish Speaking Dad Mode</h1>
+            <label class="switch">
+                <input id="spanish-input" type="checkbox" unchecked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <!--Image and Prompt-->
+        <img id="dad-img" src="dad.webp" alt>
+        <h1 id="prompt">Hello son, care to hear a funny joke?</h1>
+        
+        <!--Buttons-->
+        <div class="btn-container">
+            <button id="yes-btn">
+                <p>Yes</p>
+            </button>
+            <button id="no-btn">
+                <p>No</p>
+            </button>
+        </div>
+
+        <!--Scripts-->
+        <script src="./client.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </body>
+</html>

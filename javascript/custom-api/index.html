@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <button id="get-btn">Get request to server</button>
+        <input id="param-input" type="text">
+        <button id="get-param-btn">Get request with param to server</button>
+        <button id="post-btn">Post request to server</button>
+
+        <script>
+            let getBtn = document.querySelector("#get-btn");
+            let paramInput = document.querySelector("#param-input");
+            let getParamBtn = document.querySelector("#get-param-btn");
+            let postBtn = document.querySelector("#post-btn");
+
+            /*for this demo, the server is run on the local network
+            aka this code only works if the server and client 
+            are run on the same network*/
+            const baseURL = 'http://localhost:3030';
+
+            //notice that api calls are asynchronous so you need to 
+            //call them in async functions
+            //for more information, please read up on 
+            //javascript's async/await feature
+            getBtn.addEventListener('click', async () => {
+                
+                //it is good practice to put your api calls inside of 
+                //a try catch statement. This prevents your program from ending 
+                //if a call goes wrong
+                try {
+                    const response = await axios.get(baseURL);
+                    console.log(response.data);
+                } catch(err) {
+                    console.error(err);
+                }
+            })
+
+            getParamBtn.addEventListener('click', async () => {
+
+                //gets the value from the textbox
+                //.trim() removes any trailing whitespaces
+                const paramValue = paramInput.value.trim();
+                
+                //if the paramValue exists
+                if (paramValue) {
+                    try {
+                        //the ${} syntax is called a template literal
+                        //it's just an easy way to incorporate variables into strings
+                        const response = await axios.get(`${baseURL}/greet/${paramValue}`);
+                        console.log(response.data);
+                    } catch(err) {
+                        console.error(err);
+                    }
+                } else {
+                    console.error('Please enter a parameter value');
+                }
+            })
+
+            postBtn.addEventListener('click', async () => {
+                try {
+                    const response = await axios.post(`${baseURL}/submit`);
+                    console.log(response.data);
+                } catch(err) {
+                    console.error(err);
+                }
+            })
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </body>
+</html>
